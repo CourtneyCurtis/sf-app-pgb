@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="billApp">
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no maximum-scale=1 minimum-scale=1">
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/appStyles.css">
+    <script src="vendor/angular.min.js"></script>
+    <script src="js/restaurantController.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid home-screen" ng-controller="RestaurantListCtrl">
+      <!--<label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName}}!</h1>-->
+
+      <!--<div ng-if=restaurants.length != 0>
+        <ul>
+          <li ng-bind-html="(restaurants|filter:distance)[0].distance">{{restaurant.name}}</li>
+        </ul>
+      </div>-->
+      <div class="row">
+        <h1 class="col-xs-10 col-xs-offset-1 welcome-text" ng-repeat="restaurant in restaurants | orderBy: 'distance' | limitTo:1 ">Welcome to {{restaurant.name}}</h1>
+      </div>
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <a type="button" class="btn btn-primary btn-lg" href="bill.html">I'm ready for the bill</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle full-width" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              Other Restaurants
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu full-width" role="menu" aria-labelledby="dropdownMenu1">
+              <!-- displaying closest restuarants first -->
+              <li role="presentation" ng-repeat="restaurant in restaurants | orderBy: 'distance' ">
+                <a role="menuitem" tabindex="-1" href="#">{{restaurant.name}}</a>
+              </li>
+              <li role="presentation" class="divider"></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Search Restaurants</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!--<div>
+        <form class="form-inline">
+          <input ng-model="query" type="text"
+            placeholder="Search Near By" autofocus>
+        </form>
+        <ul ng-repeat="restaurant in restaurants | filter:query | orderBy: 'distance' ">
+          <li>{{restaurant.name}}</li>
+        </ul>
+      </div>-->
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
