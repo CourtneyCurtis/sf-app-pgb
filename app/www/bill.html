@@ -1,7 +1,7 @@
 <!doctype html>
 <html ng-app="billApp">
   <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no maximum-scale=1 minimum-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1, minimum-scale=1, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/appStyles.css">
     <script src="vendor/angular.min.js"></script>
@@ -11,28 +11,33 @@
   <body>
     <div class="container-fluid home-screen" ng-controller="RestaurantListCtrl">
       <div class="row">
+        <a href="index.html">Back to home screen.</a>
+      </div>
+      <div class="row">
         <h1 class="col-xs-10 col-xs-offset-1 welcome-text" ng-repeat="restaurant in restaurants | orderBy: 'distance' | limitTo:1 ">Welcome to {{restaurant.name}}</h1>
         <h2 class="col-xs-10 col-xs-offset-1">Table 12</h2>
       </div>
     </div>
-    <div class="container-fluid home-screen" ng-controller="BillCtrl">
-      <table class="table table-bordered table-striped">
-        <tr class="row" ng-repeat="item in items | orderBy: 'name'">
-          <td class="col-xs-2">{{item.quantity}} <input type="text" ng-model="yourName" placeholder="Enter a your here">{{yourName}}!<td>
-          <td class="col-xs-8" ng-click="update(item, yourName)">{{item.name}} {{item.guests}} <button type="button" class="btn btn-primary">Split</button><td>
-          <td class="col-xs-2">{{item.price}}<td>
-        </tr>
-      </table>
-      <div class="row">
-        <div class="col-xs-6">
-          <h4>Tax {{item.price}}</h4>
-          <h3>{{item.price}}</h3>
-          <h3>Total Price</h3>
-        </div>
-        <div class="col-xs-6">
-          <p>Tap items to claim</p>
-        </div>
-      </div>
+    <div class="container-fluid bill-screen" ng-controller="BillCtrl">
+        <table class="table table-bordered">
+          <tr ng-repeat="item in items | orderBy: 'name'">
+            <td>{{item.quantity}} <input type="text" ng-model="yourName" placeholder="Enter a your here">{{yourName}}</td>
+            <td class="item-name" ng-click="update(item, yourName)">{{item.name}} {{item.guests}} <button type="button" class="btn btn-primary pull-right">Split</button></td>
+            <td>{{item.price | currency}}</td>
+          </tr>
+        </table>
+        <table class="table table-bordered">
+          <tr class="totals">
+            <td>
+              <h4>Tax {{item.price}}</h4>
+              <h3>{{billTotal | currency}}</h3>
+              <h3>Total Price</h3>
+            </td>
+            <td>
+              <p>Tap items to claim</p>
+            </td>
+          </tr>
+        </table>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>

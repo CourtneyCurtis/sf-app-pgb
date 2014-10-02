@@ -1,25 +1,25 @@
 billApp.controller('BillCtrl', function ($scope) {
   $scope.items = [
     {'name': 'Nachos',
-     'price': '$8.00',
+     'price': '8.00',
      'category': 'food',
      'splitby': '1',
      'guests': '',
      'quantity':'2'},
     {'name': 'Tatter Tots',
-     'price': '$6.95',
+     'price': '6.95',
      'category': 'food',
      'splitby': '1',
      'guests': '',
      'quantity':'3'},
     {'name': 'Sliders',
-     'price': '$12.95',
+     'price': '12.95',
      'category': 'food',
      'splitby': '1',
      'guests': 'Courtney',
      'quantity':'1'},
      {'name': 'Burger',
-      'price': '$14.95',
+      'price': '14.95',
       'category': 'food',
       'splitby': '1',
       'guests': '',
@@ -35,6 +35,14 @@ billApp.controller('BillCtrl', function ($scope) {
 
   $scope.thisUser= {};
 
+  var billTotal = 0;
+
+  $scope.items.forEach(function(billItem) {
+    billTotal += parseFloat(billItem.price);
+  });
+
+  $scope.billTotal = billTotal;
+
   $scope.update = function(currentItem, yourName) {
   // Example with 1 argument
     console.log(currentItem);
@@ -43,6 +51,7 @@ billApp.controller('BillCtrl', function ($scope) {
     //$scope.thisUser = angular.copy(item);
     //$scope.thisUser = angular.copy($scope.items, $scope.thisUser);
   };
+
 
 
 });

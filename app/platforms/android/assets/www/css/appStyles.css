@@ -1,0 +1,22 @@
+.full-width{
+  width:100%;
+  margin-left:0;
+  margin-right:0;
+}
+
+.center{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.welcome-text{
+  margin-top:25%;
+}
+
+.home-screen{
+  text-align:center;
+}
+.home-screen .btn-primary{
+  margin-top:20px;
+  margin-bottom:20px;
+}
